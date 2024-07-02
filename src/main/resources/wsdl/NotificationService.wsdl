@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="NotificationService"
+             targetNamespace="http://www.wsnotification.com/ws/NotificationService"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xs="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://www.wsnotification.com/ws/NotificationService">
+
+    <!-- Types definition -->
+    <types>
+        <xs:schema>
+            <xs:import namespace="http://www.wsnotification.com/ws/NotificationService" schemaLocation="../xsd/NotificationService.xsd"/>
+        </xs:schema>
+    </types>
+<!--    <types>-->
+<!--        <xs:schema targetNamespace="http://www.wsnotifications.com/ws/NotificationService">-->
+<!--            &lt;!&ndash; Define complex types for request and response messages &ndash;&gt;-->
+<!--            <xs:element name="SendNotificationRequest">-->
+<!--                <xs:complexType>-->
+<!--                    <xs:sequence>-->
+<!--                        <xs:element name="recipient" type="xs:string"/>-->
+<!--                        <xs:element name="message" type="xs:string"/>-->
+<!--                    </xs:sequence>-->
+<!--                </xs:complexType>-->
+<!--            </xs:element>-->
+
+<!--            <xs:element name="SendNotificationResponse">-->
+<!--                <xs:complexType>-->
+<!--                    <xs:sequence>-->
+<!--                        <xs:element name="status" type="xs:boolean"/>-->
+<!--                        <xs:element name="message" type="xs:string"/>-->
+<!--                    </xs:sequence>-->
+<!--                </xs:complexType>-->
+<!--            </xs:element>-->
+<!--        </xs:schema>-->
+<!--    </types>-->
+
+    <!-- Messages definition -->
+    <message name="SendNotificationRequestMsg">
+        <part name="params" element="tns:SendNotificationRequest"/>
+    </message>
+
+    <message name="SendNotificationResponseMsg">
+        <part name="params" element="tns:SendNotificationResponse"/>
+    </message>
+
+    <!-- PortType definition -->
+    <portType name="NotificationServicePortType">
+        <operation name="sendNotification">
+            <input message="tns:SendNotificationRequestMsg"/>
+            <output message="tns:SendNotificationResponseMsg"/>
+        </operation>
+    </portType>
+
+    <!-- Binding definition -->
+    <binding name="NotificationServiceSOAPBinding" type="tns:NotificationServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="sendNotification">
+            <soap:operation soapAction="sendNotification"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+
+    <!-- Service definition -->
+    <service name="NotificationService">
+        <port name="NotificationServicePort" binding="tns:NotificationServiceSOAPBinding">
+            <soap:address location="http://localhost:8080/ws/notificationService"/>
+        </port>
+    </service>
+</definitions>

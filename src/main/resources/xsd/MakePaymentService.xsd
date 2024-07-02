@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://www.wsmakepayment.com/ws/MakePaymentService"
+           targetNamespace="http://www.wsmakepayment.com/ws/MakePaymentService"
+           elementFormDefault="qualified">
+
+    <xs:complexType name="PaymentType">
+        <xs:sequence>
+            <xs:element name="transactionId" type="xs:string"/>
+            <xs:element name="amount" type="xs:decimal"/>
+            <xs:element name="currency" type="xs:string"/>
+            <xs:element name="paymentDate" type="xs:date"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="MakePaymentRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="payment" type="tns:PaymentType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="MakePaymentResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="status" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

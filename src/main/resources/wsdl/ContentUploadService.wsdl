@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="ContentUploadService"
+             targetNamespace="http://www.wscontentuploadservice.com/ws/ContentUploadService"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xs="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://www.wscontentuploadservice.com/ws/ContentUploadService">
+
+    <types>
+        <xs:schema>
+            <xs:import namespace="http://www.wscontentuploadservice.com/ws/ContentUploadService" schemaLocation="../xsd/ContentUploadService.xsd"/>
+        </xs:schema>
+    </types>
+
+<!--    <types>-->
+<!--        <xs:schema targetNamespace="http://www.wscontentuploadservice.com/ws/ContentUploadService">-->
+<!--            <xs:complexType name="videoType">-->
+<!--                <xs:sequence>-->
+<!--                    <xs:element name="videoData" type="xs:base64Binary" />-->
+<!--                    <xs:element name="className" type="xs:string" />-->
+<!--                    <xs:element name="lectureName" type="xs:string" />-->
+<!--                    <xs:element name="date" type="xs:date" />-->
+<!--                    <xs:element name="duration" type="xs:duration" />-->
+<!--                </xs:sequence>-->
+<!--            </xs:complexType>-->
+
+<!--            <xs:element name="uploadContentRequest">-->
+<!--                <xs:complexType>-->
+<!--                    <xs:sequence>-->
+<!--                        <xs:element name="video" type="tns:videoType" />-->
+<!--                    </xs:sequence>-->
+<!--                </xs:complexType>-->
+<!--            </xs:element>-->
+
+<!--            <xs:element name="uploadContentResponse">-->
+<!--                <xs:complexType>-->
+<!--                    <xs:sequence>-->
+<!--                        <xs:element name="statusCode" type="xs:int" />-->
+<!--                    </xs:sequence>-->
+<!--                </xs:complexType>-->
+<!--            </xs:element>-->
+
+<!--            <xs:element name="getContentRequest">-->
+<!--                <xs:complexType>-->
+<!--                    <xs:sequence>-->
+<!--                        <xs:element name="className" type="xs:string" />-->
+<!--                        <xs:element name="lectureName" type="xs:string" />-->
+<!--                    </xs:sequence>-->
+<!--                </xs:complexType>-->
+<!--            </xs:element>-->
+
+<!--            <xs:element name="getContentResponse">-->
+<!--                <xs:complexType>-->
+<!--                    <xs:sequence>-->
+<!--                        <xs:element name="video" type="tns:videoType" />-->
+<!--                    </xs:sequence>-->
+<!--                </xs:complexType>-->
+<!--            </xs:element>-->
+
+<!--            <xs:element name="deleteContentRequest">-->
+<!--                <xs:complexType>-->
+<!--                    <xs:sequence>-->
+<!--                        <xs:element name="className" type="xs:string" />-->
+<!--                        <xs:element name="lectureName" type="xs:string" />-->
+<!--                    </xs:sequence>-->
+<!--                </xs:complexType>-->
+<!--            </xs:element>-->
+
+<!--            <xs:element name="deleteContentResponse">-->
+<!--                <xs:complexType>-->
+<!--                    <xs:sequence>-->
+<!--                        <xs:element name="statusCode" type="xs:int" />-->
+<!--                    </xs:sequence>-->
+<!--                </xs:complexType>-->
+<!--            </xs:element>-->
+
+<!--            <xs:element name="contentFault" type="xs:string" />-->
+<!--        </xs:schema>-->
+<!--    </types>-->
+
+    <message name="contentFault">
+        <part name="params" element="tns:contentFault" />
+    </message>
+
+    <message name="uploadContentRequestMsg">
+        <part name="params" element="tns:uploadContentRequest" />
+    </message>
+
+    <message name="uploadContentResponseMsg">
+        <part name="params" element="tns:uploadContentResponse" />
+    </message>
+
+    <message name="getContentRequestMsg">
+        <part name="params" element="tns:getContentRequest" />
+    </message>
+
+    <message name="getContentResponseMsg">
+        <part name="params" element="tns:getContentResponse" />
+    </message>
+
+    <message name="deleteContentRequestMsg">
+        <part name="params" element="tns:deleteContentRequest" />
+    </message>
+
+    <message name="deleteContentResponseMsg">
+        <part name="params" element="tns:deleteContentResponse" />
+    </message>
+
+    <portType name="ContentUploadServicePortType">
+        <operation name="uploadContent">
+            <input message="tns:uploadContentRequestMsg" />
+            <output message="tns:uploadContentResponseMsg" />
+            <fault name="fault" message="tns:contentFault" />
+        </operation>
+
+        <operation name="getContent">
+            <input message="tns:getContentRequestMsg" />
+            <output message="tns:getContentResponseMsg" />
+            <fault name="fault" message="tns:contentFault" />
+        </operation>
+
+        <operation name="deleteContent">
+            <input message="tns:deleteContentRequestMsg" />
+            <output message="tns:deleteContentResponseMsg" />
+            <fault name="fault" message="tns:contentFault" />
+        </operation>
+    </portType>
+
+    <binding name="contentUploadServiceSOAPBinding" type="tns:ContentUploadServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="uploadContent">
+            <soap:operation soapAction="uploadContent" />
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="fault">
+                <soap:fault name="fault" use="literal" />
+            </fault>
+        </operation>
+
+        <operation name="getContent">
+            <soap:operation soapAction="getContent" />
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="fault">
+                <soap:fault name="fault" use="literal" />
+            </fault>
+        </operation>
+
+        <operation name="deleteContent">
+            <soap:operation soapAction="deleteContent" />
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="fault">
+                <soap:fault name="fault" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+
+    <service name="ContentUploadService">
+        <port name="ContentUploadServicePort" binding="tns:contentUploadServiceSOAPBinding">
+            <soap:address location="http://localhost:8080/wsdlfirst/contentUploadService" />
+        </port>
+    </service>
+</definitions>

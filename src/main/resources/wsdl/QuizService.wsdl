@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="QuizService"
+             targetNamespace="http://www.wsquiz.com/ws/quiz"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xs="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://www.wsquiz.com/ws/quiz">
+
+    <!-- Import the XSD -->
+    <types>
+        <xs:schema>
+            <xs:import namespace="http://www.wsquiz.com/ws/quiz" schemaLocation="../xsd/QuizService.xsd"/>
+        </xs:schema>
+    </types>
+
+    <!-- Messages -->
+    <message name="GetQuizQuestionRequest">
+        <part name="params" element="tns:GetQuizQuestionRequest"/>
+    </message>
+
+    <message name="GetQuizQuestionResponse">
+        <part name="params" element="tns:GetQuizQuestionResponse"/>
+    </message>
+
+    <message name="SubmitQuizAnswerRequest">
+        <part name="params" element="tns:SubmitQuizAnswerRequest"/>
+    </message>
+
+    <message name="SubmitQuizAnswerResponse">
+        <part name="params" element="tns:SubmitQuizAnswerResponse"/>
+    </message>
+
+    <!-- Port type -->
+    <portType name="QuizPortType">
+        <operation name="GetQuizQuestion">
+            <input message="tns:GetQuizQuestionRequest"/>
+            <output message="tns:GetQuizQuestionResponse"/>
+        </operation>
+
+        <operation name="SubmitQuizAnswer">
+            <input message="tns:SubmitQuizAnswerRequest"/>
+            <output message="tns:SubmitQuizAnswerResponse"/>
+        </operation>
+    </portType>
+
+    <!-- Binding -->
+    <binding name="QuizSOAPBinding" type="tns:QuizPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+        <operation name="GetQuizQuestion">
+            <soap:operation soapAction="http://www.wsquiz.com/ws/quiz/GetQuizQuestion"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+
+        <operation name="SubmitQuizAnswer">
+            <soap:operation soapAction="http://www.wsquiz.com/ws/quiz/SubmitQuizAnswer"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+
+    <!-- Service -->
+    <service name="QuizService">
+        <port name="QuizPort" binding="tns:QuizSOAPBinding">
+            <soap:address location="http://localhost:8080/ws/quiz"/>
+        </port>
+    </service>
+</definitions>

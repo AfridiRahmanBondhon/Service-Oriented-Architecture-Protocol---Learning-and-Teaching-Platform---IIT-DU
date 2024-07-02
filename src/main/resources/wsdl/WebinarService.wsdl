@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="WebinarService"
+             targetNamespace="http://www.wswebinar.com/ws/webinar"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xs="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://www.wswebinar.com/ws/webinar">
+
+    <!-- Import the XSD -->
+    <types>
+        <xs:schema>
+            <xs:import namespace="http://www.wswebinar.com/ws/webinar" schemaLocation="../xsd/WebinarService.xsd"/>
+        </xs:schema>
+    </types>
+
+    <!-- Messages -->
+    <message name="CreateWebinarRequest">
+        <part name="params" element="tns:CreateWebinarRequest"/>
+    </message>
+
+    <message name="CreateWebinarResponse">
+        <part name="params" element="tns:CreateWebinarResponse"/>
+    </message>
+
+    <message name="GetWebinarDetailsRequest">
+        <part name="params" element="tns:GetWebinarDetailsRequest"/>
+    </message>
+
+    <message name="GetWebinarDetailsResponse">
+        <part name="params" element="tns:GetWebinarDetailsResponse"/>
+    </message>
+
+    <message name="RegisterParticipantRequest">
+        <part name="params" element="tns:RegisterParticipantRequest"/>
+    </message>
+
+    <message name="RegisterParticipantResponse">
+        <part name="params" element="tns:RegisterParticipantResponse"/>
+    </message>
+
+    <!-- Port type -->
+    <portType name="WebinarPortType">
+        <operation name="CreateWebinar">
+            <input message="tns:CreateWebinarRequest"/>
+            <output message="tns:CreateWebinarResponse"/>
+        </operation>
+
+        <operation name="GetWebinarDetails">
+            <input message="tns:GetWebinarDetailsRequest"/>
+            <output message="tns:GetWebinarDetailsResponse"/>
+        </operation>
+
+        <operation name="RegisterParticipant">
+            <input message="tns:RegisterParticipantRequest"/>
+            <output message="tns:RegisterParticipantResponse"/>
+        </operation>
+    </portType>
+
+    <!-- Binding -->
+    <binding name="WebinarSOAPBinding" type="tns:WebinarPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+        <operation name="CreateWebinar">
+            <soap:operation soapAction="http://www.wswebinar.com/ws/webinar/CreateWebinar"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+
+        <operation name="GetWebinarDetails">
+            <soap:operation soapAction="http://www.wswebinar.com/ws/webinar/GetWebinarDetails"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+
+        <operation name="RegisterParticipant">
+            <soap:operation soapAction="http://www.wswebinar.com/ws/webinar/RegisterParticipant"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+
+    <!-- Service -->
+    <service name="WebinarService">
+        <port name="WebinarPort" binding="tns:WebinarSOAPBinding">
+            <soap:address location="http://localhost:8080/ws/webinar"/>
+        </port>
+    </service>
+</definitions>

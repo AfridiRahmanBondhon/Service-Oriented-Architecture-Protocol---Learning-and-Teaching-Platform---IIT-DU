@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE definitions [
+        <!ELEMENT definitions (types|message|portType|binding|service)*>
+        <!ATTLIST definitions
+                name CDATA #REQUIRED
+                targetNamespace CDATA #REQUIRED
+                xmlns CDATA #REQUIRED
+                xmlns:wsdl CDATA #REQUIRED
+                xmlns:xs CDATA #REQUIRED
+                xmlns:soap CDATA #REQUIRED
+                xmlns:tns CDATA #REQUIRED>
+        <!ELEMENT types (xs:schema)*>
+        <!ELEMENT xs:schema (xs:complexType|xs:element)*>
+        <!ATTLIST xs:schema
+                targetNamespace CDATA #REQUIRED>
+        <!ELEMENT xs:complexType (xs:sequence|xs:all)*>
+        <!ATTLIST xs:complexType
+                name CDATA #IMPLIED>
+        <!ELEMENT xs:sequence (xs:element)*>
+        <!ELEMENT xs:element (xs:complexType)*>
+        <!ATTLIST xs:element
+                maxOccurs CDATA #IMPLIED
+                minOccurs CDATA #IMPLIED
+                name CDATA #REQUIRED
+                type CDATA #IMPLIED>
+        <!ELEMENT xs:all (xs:element)*>
+        <!ELEMENT message (part)*>
+        <!ATTLIST message
+                name CDATA #REQUIRED>
+        <!ELEMENT part (#PCDATA)>
+        <!ATTLIST part
+                element CDATA #REQUIRED
+                name CDATA #REQUIRED>
+        <!ELEMENT portType (operation)*>
+        <!ATTLIST portType
+                name CDATA #REQUIRED>
+        <!ELEMENT operation (input|output|fault|soap:operation)*>
+        <!ATTLIST operation
+                name CDATA #REQUIRED>
+        <!ELEMENT input (soap:body)*>
+        <!ATTLIST input
+                message CDATA #IMPLIED>
+        <!ELEMENT output (soap:body)*>
+        <!ATTLIST output
+                message CDATA #IMPLIED>
+        <!ELEMENT fault (soap:fault)*>
+        <!ATTLIST fault
+                message CDATA #IMPLIED
+                name CDATA #REQUIRED>
+        <!ELEMENT binding (soap:binding|operation)*>
+        <!ATTLIST binding
+                name CDATA #REQUIRED
+                type CDATA #REQUIRED>
+        <!ELEMENT soap:binding (#PCDATA)>
+        <!ATTLIST soap:binding
+                style CDATA #REQUIRED
+                transport CDATA #REQUIRED>
+        <!ELEMENT soap:operation (#PCDATA)>
+        <!ATTLIST soap:operation
+                soapAction CDATA #REQUIRED>
+        <!ELEMENT soap:body (#PCDATA)>
+        <!ATTLIST soap:body
+                use CDATA #REQUIRED>
+        <!ELEMENT soap:fault (#PCDATA)>
+        <!ATTLIST soap:fault
+                name CDATA #REQUIRED
+                use CDATA #REQUIRED>
+        <!ELEMENT service (port)*>
+        <!ATTLIST service
+                name CDATA #REQUIRED>
+        <!ELEMENT port (soap:address)*>
+        <!ATTLIST port
+                name CDATA #REQUIRED
+                binding CDATA #REQUIRED>
+        <!ELEMENT soap:address (#PCDATA)>
+        <!ATTLIST soap:address
+                location CDATA #REQUIRED>
+        ]>
+<definitions name="LibraryService"
+             targetNamespace="http://www.wslibrary.com/ws/LibraryService"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xs="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://www.wslibrary.com/ws/LibraryService">
+
+    <types>
+        <xs:schema targetNamespace="http://www.wslibrary.com/ws/LibraryService">
+            <xs:import namespace="http://www.wslibrary.com/ws/LibraryService" schemaLocation="../xsd/LibraryService.xsd"/>
+        </xs:schema>
+    </types>
+
+<!--    <types>-->
+<!--        <xs:schema targetNamespace="http://www.wslibrary.com/ws/LibraryService">-->
+<!--            <xs:complexType name="ResponseStatus">-->
+<!--                <xs:sequence>-->
+<!--                    <xs:element name="code" type="xs:int" />-->
+<!--                    <xs:element name="message" type="xs:string" />-->
+<!--                </xs:sequence>-->
+<!--            </xs:complexType>-->
+<!--            <xs:complexType name="BookType">-->
+<!--                <xs:all>-->
+<!--                    <xs:element name="id" type="xs:int" />-->
+<!--                    <xs:element name="title" type="xs:string" />-->
+<!--                    <xs:element name="author" type="xs:string" />-->
+<!--                </xs:all>-->
+<!--            </xs:complexType>-->
+
+<!--            <xs:element name="addBookRequest">-->
+<!--                <xs:complexType>-->
+<!--                    <xs:sequence>-->
+<!--                        <xs:element name="book" type="tns:BookType" />-->
+<!--                    </xs:sequence>-->
+<!--                </xs:complexType>-->
+<!--            </xs:element>-->
+
+<!--            <xs:element name="addBookResponse">-->
+<!--                <xs:complexType>-->
+<!--                    <xs:sequence>-->
+<!--                        <xs:element name="status" type="tns:ResponseStatus" />-->
+<!--                    </xs:sequence>-->
+<!--                </xs:complexType>-->
+<!--            </xs:element>-->
+
+<!--            <xs:element name="deleteBookRequest">-->
+<!--                <xs:complexType>-->
+<!--                    <xs:sequence>-->
+<!--                        <xs:element name="id" type="xs:int" />-->
+<!--                    </xs:sequence>-->
+<!--                </xs:complexType>-->
+<!--            </xs:element>-->
+
+<!--            <xs:element name="deleteBookResponse">-->
+<!--                <xs:complexType>-->
+<!--                    <xs:sequence>-->
+<!--                        <xs:element name="status" type="tns:ResponseStatus" />-->
+<!--                    </xs:sequence>-->
+<!--                </xs:complexType>-->
+<!--            </xs:element>-->
+
+<!--            <xs:element name="getBooksRequest">-->
+<!--                <xs:complexType>-->
+<!--                    <xs:sequence>-->
+<!--                        <xs:element name="author" type="xs:string" minOccurs="0" />-->
+<!--                    </xs:sequence>-->
+<!--                </xs:complexType>-->
+<!--            </xs:element>-->
+
+<!--            <xs:element name="getBooksResponse">-->
+<!--                <xs:complexType>-->
+<!--                    <xs:sequence>-->
+<!--                        <xs:element name="books" type="tns:BookType" minOccurs="0" maxOccurs="unbounded" />-->
+<!--                    </xs:sequence>-->
+<!--                </xs:complexType>-->
+<!--            </xs:element>-->
+<!--        </xs:schema>-->
+<!--    </types>-->
+
+    <message name="addBookRequestMsg">
+        <part name="params" element="tns:addBookRequest" />
+    </message>
+    <message name="addBookResponseMsg">
+        <part name="params" element="tns:addBookResponse" />
+    </message>
+
+    <message name="deleteBookRequestMsg">
+        <part name="params" element="tns:deleteBookRequest" />
+    </message>
+    <message name="deleteBookResponseMsg">
+        <part name="params" element="tns:deleteBookResponse" />
+    </message>
+
+    <message name="getBooksRequestMsg">
+        <part name="params" element="tns:getBooksRequest" />
+    </message>
+    <message name="getBooksResponseMsg">
+        <part name="params" element="tns:getBooksResponse" />
+    </message>
+
+    <portType name="LibraryServicePortType">
+        <operation name="addBook">
+            <input message="tns:addBookRequestMsg" />
+            <output message="tns:addBookResponseMsg" />
+            <fault name="fault" message="tns:libraryFault" />
+        </operation>
+        <operation name="deleteBook">
+            <input message="tns:deleteBookRequestMsg" />
+            <output message="tns:deleteBookResponseMsg" />
+            <fault name="fault" message="tns:libraryFault" />
+        </operation>
+        <operation name="getBooks">
+            <input message="tns:getBooksRequestMsg" />
+            <output message="tns:getBooksResponseMsg" />
+            <fault name="fault" message="tns:libraryFault" />
+        </operation>
+    </portType>
+
+    <binding name="libraryServiceSOAPBinding" type="tns:LibraryServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="addBook">
+            <soap:operation soapAction="addBook" />
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="fault">
+                <soap:fault name="fault" use="literal" />
+            </fault>
+        </operation>
+        <operation name="deleteBook">
+            <soap:operation soapAction="deleteBook" />
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="fault">
+                <soap:fault name="fault" use="literal" />
+            </fault>
+        </operation>
+        <operation name="getBooks">
+            <soap:operation soapAction="getBooks" />
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="fault">
+                <soap:fault name="fault" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+
+    <service name="LibraryService">
+        <port name="LibraryServicePort" binding="tns:libraryServiceSOAPBinding">
+            <soap:address location="http://localhost:8080/wsdlfirst/libraryService" />
+        </port>
+    </service>
+</definitions>

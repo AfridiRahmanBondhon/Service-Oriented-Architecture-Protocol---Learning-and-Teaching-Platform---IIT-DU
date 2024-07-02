@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="MakePaymentService"
+             targetNamespace="http://www.wsmakepayment.com/ws/MakePaymentService"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xs="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://www.wsmakepayment.com/ws/MakePaymentService">
+
+    <types>
+        <xs:schema>
+            <xs:import namespace="http://www.wsmakepayment.com/ws/MakePaymentService" schemaLocation="../xsd/MakePaymentService.xsd"/>
+        </xs:schema>
+    </types>
+
+    <message name="MakePaymentRequestMsg">
+        <part name="params" element="tns:MakePaymentRequest"/>
+    </message>
+    <message name="MakePaymentResponseMsg">
+        <part name="params" element="tns:MakePaymentResponse"/>
+    </message>
+
+    <portType name="MakePaymentPortType">
+        <operation name="MakePayment">
+            <input message="tns:MakePaymentRequestMsg"/>
+            <output message="tns:MakePaymentResponseMsg"/>
+        </operation>
+    </portType>
+
+    <binding name="MakePaymentSOAPBinding" type="tns:MakePaymentPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="MakePayment">
+            <soap:operation soapAction="MakePayment"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+
+    <service name="MakePaymentService">
+        <port name="MakePaymentPort" binding="tns:MakePaymentSOAPBinding">
+            <soap:address location="http://localhost:8080/ws/makepayment"/>
+        </port>
+    </service>
+
+</definitions>

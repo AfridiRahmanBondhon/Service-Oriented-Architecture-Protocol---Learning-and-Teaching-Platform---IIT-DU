@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="TeacherService"
+             targetNamespace="http://www.wsteacher.com/ws/TeacherService"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://www.wsteacher.com/ws/TeacherService"
+             xmlns:xs="http://www.w3.org/2001/XMLSchema"
+             xmlns:sch="http://www.w3.org/2001/XMLSchema">
+
+    <types>
+        <xs:schema>
+            <xs:import namespace="http://www.wsteacher.com/ws/TeacherService"
+                       schemaLocation="../xsd/TeacherService.xsd" />
+        </xs:schema>
+    </types>
+
+    <message name="teacherFault">
+        <part name="params" element="tns:teacherFault" />
+    </message>
+
+    <message name="AddTeacherRequestMsg">
+        <part name="params" element="tns:AddTeacherRequest" />
+    </message>
+    <message name="AddTeacherResponseMsg">
+        <part name="params" element="tns:AddTeacherResponse" />
+    </message>
+
+    <message name="UpdateTeacherRequestMsg">
+        <part name="params" element="tns:UpdateTeacherRequest" />
+    </message>
+    <message name="UpdateTeacherResponseMsg">
+        <part name="params" element="tns:UpdateTeacherResponse" />
+    </message>
+
+    <message name="GetTeacherRequestMsg">
+        <part name="params" element="tns:GetTeacherRequest" />
+    </message>
+    <message name="GetTeacherResponseMsg">
+        <part name="params" element="tns:GetTeacherResponse" />
+    </message>
+
+    <portType name="TeacherServicePortType">
+        <operation name="AddTeacher">
+            <input message="tns:AddTeacherRequestMsg" />
+            <output message="tns:AddTeacherResponseMsg" />
+            <fault name="fault" message="tns:teacherFault" />
+        </operation>
+        <operation name="UpdateTeacher">
+            <input message="tns:UpdateTeacherRequestMsg" />
+            <output message="tns:UpdateTeacherResponseMsg" />
+            <fault name="fault" message="tns:teacherFault" />
+        </operation>
+        <operation name="GetTeacher">
+            <input message="tns:GetTeacherRequestMsg" />
+            <output message="tns:GetTeacherResponseMsg" />
+            <fault name="fault" message="tns:teacherFault" />
+        </operation>
+    </portType>
+
+    <binding name="TeacherServiceSOAPBinding" type="tns:TeacherServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="AddTeacher">
+            <soap:operation soapAction="AddTeacher" />
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="fault">
+                <soap:fault name="fault" use="literal" />
+            </fault>
+        </operation>
+        <operation name="UpdateTeacher">
+            <soap:operation soapAction="UpdateTeacher" />
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="fault">
+                <soap:fault name="fault" use="literal" />
+            </fault>
+        </operation>
+        <operation name="GetTeacher">
+            <soap:operation soapAction="GetTeacher" />
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="fault">
+                <soap:fault name="fault" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+
+    <service name="TeacherService">
+        <port name="TeacherServicePort" binding="tns:TeacherServiceSOAPBinding">
+            <soap:address location="http://localhost:8080/ws/TeacherService" />
+        </port>
+    </service>
+</definitions>

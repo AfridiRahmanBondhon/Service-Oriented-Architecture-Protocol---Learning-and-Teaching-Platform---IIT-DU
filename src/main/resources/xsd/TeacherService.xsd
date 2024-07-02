@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://www.wsteacher.com/ws/TeacherService"
+           targetNamespace="http://www.wsteacher.com/ws/TeacherService"
+           elementFormDefault="qualified">
+
+    <!-- Complex Types -->
+    <xs:complexType name="Teacher">
+        <xs:all>
+            <xs:element name="teacherId" type="xs:string" />
+            <xs:element name="firstName" type="xs:string" />
+            <xs:element name="lastName" type="xs:string" />
+            <xs:element name="email" type="xs:string" />
+            <xs:element name="subject" type="xs:string" />
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="StatusResponse">
+        <xs:all>
+            <xs:element name="code" type="xs:int" />
+            <xs:element name="message" type="xs:string" />
+        </xs:all>
+    </xs:complexType>
+
+    <!-- Request and Response Elements -->
+    <xs:element name="AddTeacherRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="teacher" type="tns:Teacher" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="AddTeacherResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="status" type="tns:StatusResponse" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="UpdateTeacherRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="teacher" type="tns:Teacher" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="UpdateTeacherResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="status" type="tns:StatusResponse" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetTeacherRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="teacherId" type="xs:string" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetTeacherResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="teacher" type="tns:Teacher" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="teacherFault" type="xs:string" />
+
+</xs:schema>

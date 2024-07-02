@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.wslibrary.com/ws/LibraryService"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://www.wslibrary.com/ws/LibraryService"
+           elementFormDefault="qualified">
+
+    <xs:complexType name="ResponseStatus">
+        <xs:sequence>
+            <xs:element name="code" type="xs:int" />
+            <xs:element name="message" type="xs:string" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="BookType">
+        <xs:all>
+            <xs:element name="id" type="xs:int" />
+            <xs:element name="title" type="xs:string" />
+            <xs:element name="author" type="xs:string" />
+        </xs:all>
+    </xs:complexType>
+
+    <xs:element name="addBookRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="book" type="tns:BookType" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="addBookResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="status" type="tns:ResponseStatus" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="deleteBookRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:int" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="deleteBookResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="status" type="tns:ResponseStatus" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getBooksRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="author" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getBooksResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="books" type="tns:BookType" minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="libraryFault" type="xs:string" />
+</xs:schema>

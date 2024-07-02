@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="StudentService"
+             targetNamespace="http://www.wsstudent.com/ws/StudentService"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xs="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://www.wsstudent.com/ws/StudentService">
+
+    <types>
+        <xs:schema>
+            <xs:import namespace="http://www.wsstudent.com/ws/StudentService" schemaLocation="../xsd/StudentService.xsd"/>
+        </xs:schema>
+    </types>
+
+    <message name="AddStudentRequestMsg">
+        <part name="params" element="tns:AddStudentRequest" />
+    </message>
+    <message name="AddStudentResponseMsg">
+        <part name="params" element="tns:AddStudentResponse" />
+    </message>
+    <message name="DeleteStudentRequestMsg">
+        <part name="params" element="tns:DeleteStudentRequest" />
+    </message>
+    <message name="DeleteStudentResponseMsg">
+        <part name="params" element="tns:DeleteStudentResponse" />
+    </message>
+    <message name="GetStudentRequestMsg">
+        <part name="params" element="tns:GetStudentRequest" />
+    </message>
+    <message name="GetStudentResponseMsg">
+        <part name="params" element="tns:GetStudentResponse" />
+    </message>
+
+    <portType name="StudentPortType">
+        <operation name="AddStudent">
+            <input message="tns:AddStudentRequestMsg" />
+            <output message="tns:AddStudentResponseMsg" />
+        </operation>
+        <operation name="DeleteStudent">
+            <input message="tns:DeleteStudentRequestMsg" />
+            <output message="tns:DeleteStudentResponseMsg" />
+        </operation>
+        <operation name="GetStudent">
+            <input message="tns:GetStudentRequestMsg" />
+            <output message="tns:GetStudentResponseMsg" />
+        </operation>
+    </portType>
+
+    <binding name="StudentSOAPBinding" type="tns:StudentPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="AddStudent">
+            <soap:operation soapAction="AddStudent" />
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+        </operation>
+        <operation name="DeleteStudent">
+            <soap:operation soapAction="DeleteStudent" />
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+        </operation>
+        <operation name="GetStudent">
+            <soap:operation soapAction="GetStudent" />
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+        </operation>
+    </binding>
+
+    <service name="StudentService">
+        <port name="StudentPort" binding="tns:StudentSOAPBinding">
+            <soap:address location="http://localhost:8080/ws/StudentService" />
+        </port>
+    </service>
+</definitions>
