@@ -104,5 +104,5 @@ creating, managing, and registering for webinars. It is an Entity Service.
 
 1. Clone the repository:
    ```bash
-    git remote add origin https://github.com/AfridiRahmanBondhon/Service-Oriented-Architecture-Protocol---Learning-and-Teaching-Platform---IIT-DU.git
+    git clone https://github.com/AfridiRahmanBondhon/Service-Oriented-Architecture-Protocol---Learning-and-Teaching-Platform---IIT-DU.git
     cd learning-and-teaching-platform-SOAP
