@@ -3,6 +3,7 @@
 This project is a comprehensive SOAP-based platform 
 designed to facilitate learning and teaching activities.
 The functionality is similar to Udemy or Coursera.
+
 It encompasses a range of services that handle various
 aspects of the platform. Each service is independent 
 and ensures loose coupling. The service contract is 
@@ -97,11 +98,11 @@ creating, managing, and registering for webinars. It is an Entity Service.
 - Java 8
 - JDK 1.8.0
 - Maven
-- Intellij
+- IntelliJ
 
 ### Running the Services
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-repo/learning-and-teaching-platform-SOAP.git
-   cd learning-and-teaching-platform-SOAP
+    git remote add origin https://github.com/AfridiRahmanBondhon/Service-Oriented-Architecture-Protocol---Learning-and-Teaching-Platform---IIT-DU.git
+    cd learning-and-teaching-platform-SOAP
